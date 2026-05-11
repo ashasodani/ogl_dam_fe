@@ -1,0 +1,80 @@
+// MUI Imports
+import Button from '@mui/material/Button'
+
+// Type Imports
+import type { ChildrenType } from '@core/types'
+import type { Locale } from '@config/i18n'
+
+// Layout Imports
+import LayoutWrapper from '@ui/layout/LayoutWrapper'
+import VerticalLayout from '@ui/layout/VerticalLayout'
+import HorizontalLayout from '@ui/layout/HorizontalLayout'
+
+// Component Imports
+import Providers from '@shared/components/Providers'
+import Navigation from '@shared/components/layout/vertical/Navigation'
+import Header from '@shared/components/layout/horizontal/Header'
+import Navbar from '@shared/components/layout/vertical/Navbar'
+import VerticalFooter from '@shared/components/layout/vertical/Footer'
+import HorizontalFooter from '@shared/components/layout/horizontal/Footer'
+import Customizer from '@core/components/customizer'
+import ScrollToTop from '@core/components/scroll-to-top'
+import AuthGuard from '@/hocs/AuthGuard'
+
+// Config Imports
+import { i18n } from '@config/i18n'
+
+// Util Imports
+import { getDictionary } from '@shared/utils/getDictionary'
+import { getMode, getSystemMode } from '@core/utils/serverHelpers'
+
+const Layout = async (props: ChildrenType & { params: Promise<{ lang: Locale }> }) => {
+  const params = await props.params
+
+  const { children } = props
+
+  // Vars
+  const direction = i18n.langDirection[params.lang]
+  const dictionary = await getDictionary(params.lang)
+  const mode = await getMode()
+  const systemMode = await getSystemMode()
+
+  return (
+    <Providers direction={direction}>
+      {/* <AuthGuard locale={params.lang}> */}
+      {/* <LayoutWrapper
+        systemMode={systemMode}
+        verticalLayout={
+          <VerticalLayout
+            navigation={<Navigation dictionary={dictionary} mode={mode} />}
+            navbar={<Navbar />}
+            footer={<VerticalFooter />}
+          >
+            {children}
+          </VerticalLayout>
+        }
+        horizontalLayout={
+          <HorizontalLayout header={<Header dictionary={dictionary} />} footer={<HorizontalFooter />}>
+            sdfsfsd{children}
+          </HorizontalLayout>
+        }
+      /> */}
+      <VerticalLayout
+        navigation={<Navigation dictionary={dictionary} mode={mode} />}
+        navbar={<Navbar />}
+        footer={<VerticalFooter />}
+      >
+        {children}
+      </VerticalLayout>
+      <ScrollToTop className='mui-fixed'>
+        <Button variant='contained' className='is-10 bs-10 rounded-full p-0 min-is-0 flex items-center justify-center'>
+          <i className='ri-arrow-up-line' />
+        </Button>
+      </ScrollToTop>
+      {/* <Customizer dir={direction} /> */}
+      {/* </AuthGuard> */}
+    </Providers>
+  )
+}
+
+export default Layout
