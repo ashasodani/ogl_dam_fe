@@ -176,6 +176,8 @@ class AxiosApiService implements ApiService {
         localStorage.removeItem('customerDetails')
 
         window.location.href = '/login'
+
+        return Promise.reject(error)
       }
 
       // ✅ STEP 4: Normal rejection for public page or other status

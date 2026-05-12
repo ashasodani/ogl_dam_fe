@@ -1,5 +1,8 @@
 'use client'
 
+// Next Imports
+import { useParams } from 'next/navigation'
+
 // MUI Imports
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
@@ -33,6 +36,9 @@ const cardData: CardDataType[] = [
 ]
 
 const RoleCards = () => {
+  // Hooks
+  const { lang: locale } = useParams()
+
   // Vars
   const typographyProps: TypographyProps = {
     children: 'Edit Role',
@@ -53,7 +59,7 @@ const RoleCards = () => {
         <Grid size={{ xs: 7 }}>
           <CardContent>
             <div className='flex flex-col items-end gap-4 text-right'>
-              <Button variant='contained' size='small'>
+              <Button variant='contained' size='small' component={Link} href={`/${locale}/apps/roles/create`}>
                 Add Role
               </Button>
               <Typography>

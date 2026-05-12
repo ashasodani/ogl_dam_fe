@@ -15,6 +15,7 @@ import candidateDashboard from '@store/slices/candidateDashboardSlice'
 import jdoodle from '@store/slices/jdoodleSlice'
 import coding from '@store/slices/codingTestSlice'
 import company from '@store/slices/companySlice'
+import country from '@store/slices/countrySlice'
 
 export const store = configureStore({
   reducer: {
@@ -30,7 +31,8 @@ export const store = configureStore({
     technology,
     jdoodle,
     coding,
-    company
+    company,
+    country
   },
   middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false })
 })

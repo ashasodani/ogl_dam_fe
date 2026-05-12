@@ -53,6 +53,11 @@ const verticalMenuData = (dictionary: Awaited<ReturnType<typeof getDictionary>>)
             href: '/apps/permissions'
           }
         ]
+      },
+      {
+        label: 'Countries',
+        icon: 'ri-global-line',
+        href: '/apps/countries'
       }
     ]
   },

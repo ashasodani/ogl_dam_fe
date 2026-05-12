@@ -214,6 +214,10 @@ const horizontalMenuData = (dictionary: Awaited<ReturnType<typeof getDictionary>
           {
             label: dictionary['navigation'].permissions,
             href: '/apps/permissions'
+          },
+          {
+            label: dictionary['navigation'].countries,
+            href: '/apps/countries'
           }
         ]
       }
